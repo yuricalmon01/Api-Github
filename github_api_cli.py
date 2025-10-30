@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # GitHub API CLI - Demonstração de Métodos HTTP
-# Instalar dependências: pip install requests
+# Instalar depget_user_repos('viniciusloureiro67', 10)endências: pip install requests
 
 import requests
 import json
@@ -231,32 +231,35 @@ def main():
     """Executa demonstrações dos métodos HTTP"""
     print(f"{Colors.CYAN}")
     print("╔═══════════════════════════════════════════╗")
-    print("║   GitHub API - Demonstração de Métodos   ║")
+    print("║   GitHub API - Demonstração de Métodos   ║")
     print("╚═══════════════════════════════════════════╝")
     print(f"{Colors.RESET}")
     
     # Exemplos de uso dos métodos GET (não requerem autenticação)
+    print(f"\n{Colors.CYAN}--- Testes GET (Leitura de Dados Públicos) ---{Colors.RESET}")
     get_user('torvalds')
     get_user_repos('github', 3)
     search_repos_by_language('python', 3)
     
     # Exemplos de métodos POST, PATCH, DELETE (requerem token)
-    print(f"\n{Colors.YELLOW}⚠️  Para usar POST, PATCH e DELETE, você precisa de um token do GitHub.{Colors.RESET}")
-    print(f"{Colors.YELLOW}   Obtenha em: https://github.com/settings/tokens{Colors.RESET}")
-    print(f"{Colors.YELLOW}   Exemplo de uso:{Colors.RESET}\n")
+    print(f"\n{Colors.YELLOW}--- Testes Autenticados (Escrita/Deleção) ---{Colors.RESET}")
+    print(f"\n{Colors.YELLOW}⚠️  Para usar POST, PATCH e DELETE, você precisa de um token do GitHub.{Colors.RESET}")
+    print(f"{Colors.YELLOW}   Obtenha em: https://github.com/settings/tokens{Colors.RESET}")
+    print(f"{Colors.YELLOW}   Exemplo de uso (requer um token com escopo 'gist'):{Colors.RESET}\n")
     
-    print("   TOKEN = 'seu_token_aqui'")
-    print("   gist = create_gist(TOKEN, 'Meu gist', 'exemplo.txt', 'Conteúdo aqui')")
-    print("   update_gist(TOKEN, gist['id'], 'Descrição atualizada')")
-    print("   delete_gist(TOKEN, gist['id'])")
-    
-    print(f"\n{Colors.CYAN}Exemplo de uso com token (descomente para testar):{Colors.RESET}")
+    print("   # Configuração do Token (Substitua 'seu_token_aqui' pelo seu token real!)")
+    print("   # TOKEN = 'seu_token_aqui'")
+    print("\n   # Sequência de Teste: POST -> PATCH -> DELETE")
     print("""
-    # TOKEN = 'seu_token_aqui'
-    # gist = create_gist(TOKEN, 'Teste API', 'teste.py', 'print("Hello World")')
-    # if gist:
-    #     update_gist(TOKEN, gist['id'], 'Teste API - Atualizado')
-    #     delete_gist(TOKEN, gist['id'])
+    # if 'TOKEN' in locals() and TOKEN != 'seu_token_aqui':
+    #     print(f"{Colors.YELLOW}Executando teste completo de Gist (Criação, Atualização, Deleção)...{Colors.RESET}")
+    #     gist = create_gist(TOKEN, 'Teste API: Gist Temporário', 'teste.txt', 'Conteúdo inicial do gist.')
+    #     if gist:
+    #         gist_id = gist['id']
+    #         update_gist(TOKEN, gist_id, 'Teste API: Descrição Atualizada com PATCH')
+    #         delete_gist(TOKEN, gist_id)
+    #     else:
+    #         print(f"{Colors.RED}Falha ao criar Gist. Verifique seu TOKEN e as permissões de 'gist'.{Colors.RESET}")
     """)
 
 if __name__ == '__main__':
